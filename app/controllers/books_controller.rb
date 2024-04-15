@@ -12,15 +12,18 @@ class BooksController < ApplicationController
   end
 
   def index
+    @books = Book.all
+    
   end
 
   def show
+  @book = Book.find(params[:id])
   end
   
   private
   
   def book_params
-    params.require(:book).permit(:title,:opinion)
+    params.require(:book).permit(:title,:body)
   end
   
   
