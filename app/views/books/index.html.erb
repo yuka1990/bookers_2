@@ -1,9 +1,11 @@
 <h1>Books</h1>
 <% @books.each do |book| %>
 <div>
-  <%= image_tag book.get_image %>
-  <p>投稿ユーザー画像:<%= image_tag 'default-image.jpg'%></p>
-  <p>Title: <%= book.title %></p>
+  <%= link_to books_path(book.id) do %>
+   <%= image_tag book.get_image%>
+   <% end %>
+  <p>投稿ユーザー画像:<%= image_tag 'default-image.jpg' %></p>
+  <p>Title:<%= book.title %></p>
   <p>Opinion:<%= book.body %></p>
 </div>
 <% end %>
