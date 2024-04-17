@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     redirect_to user_path
     else
       render :edit
+      
     end
   end
   
