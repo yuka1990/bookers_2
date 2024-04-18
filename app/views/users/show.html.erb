@@ -1,38 +1,66 @@
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <div class="col-md-3">
+    
+    <h1>User info</h1>
+    <%= image_tag @user.get_profile_image(100,100) %>
+    <table class="table">
+      <tbody>
+       <tr>
+         <th>name</th>
+         <th><%= @user.name %></th>
+       </tr>
+       <tr>
+         <th>introduction</th>
+         <th><%= @user.introduction %></th>
+      </tbody>
+    </table>
+       
+    <div class="row">
+    <%=link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block" do %>
+    <i class="fa-solid fa-user-gear"></i><% end %>
+    </div>  
+       
+    <h1>New Book </h1>
+    <%= form_with model:@book do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+      <h4>Opinion</h4>
+      <%= f.text_field :body %>
+      <%= f.submit "Create Book", class:"btn btn-success" %>
+    <% end %>
+    
+  </div>
 
-<h1>User info</h1>
-  <%= image_tag @user.get_profile_image(100,100) %>
-    <p>name <%= @user.name %></P>
-    <p>introduction <%= @user.introduction %></P>
-    <p><%=link_to"プロフィール編集",edit_user_path(current_user) %></p>
+  <div class="offset-md-1"></div>
 
-
-<h1>New Book </h1>
-
-
-<%= form_with model:@book do |f| %>
- <h4>Title</h4>
- <%= f.text_field :title %>
- <h4>Opinion</h4>
- <%= f.text_field :body %>
- <%= f.submit "Create Book" %>
-<% end %>
-
-
-<h1>Books</h1>
-<h2>Title</h2>
-<h2>Opinion</h2>
-
-<% @books.each do |book| %>
-<div>
-  <%= link_to books_path(book.id) do %>
-   <%= image_tag book.user.get_profile_image(100,100)%>
-   <% end %>
-
-  <%= link_to book_path(book.id) do %>
-   <%= book.title %>
-   <% end %>
-
-  <%= book.body %>
-
+  <div class="col-md-8">
+   <h1>Books</h1>
+   <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+      <% @books.each do |book| %>
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to books_path(book.id) do %>
+            <%= image_tag book.user.get_profile_image(100,100)%>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to book_path(book.id) do %>
+            <%= book.title %>
+            <% end %>
+          </td>
+          <td><%= book.body %></td>
+        </tr>
+      </tbody>
+      <% end %>
+   </table>
+  </div>
+ </div>
 </div>
-<% end %>
