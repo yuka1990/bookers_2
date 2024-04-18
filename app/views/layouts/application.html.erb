@@ -22,7 +22,7 @@
       <% if user_signed_in? %>
 
        <li class="nav-item">
-        <%= link_to root_path, class:"text-white mx-3" do %>
+        <%= link_to user_path(current_user), class:"text-white mx-3" do %>
         <i class="fa-solid fa-house"></i>Home
         <% end %>
        </li>
